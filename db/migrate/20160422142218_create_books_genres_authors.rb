@@ -6,12 +6,12 @@ class CreateBooksGenresAuthors < ActiveRecord::Migration
     end
 
     create_table :books do |t|
-      t.string :name
-      t.float :price
-      t.integer :quantity
-      t.integer :sold
+      t.string :name, null: false
+      t.float :price, null: false, default: 0.00
+      t.integer :quantity, null: false, default: 0
+      t.integer :sold, null: false, default: 0
       t.integer :year
-      t.string :isbn
+      t.string :isbn, null: false
       t.string :description
       t.belongs_to :genre, index: true
       t.timestamps null: false
@@ -28,7 +28,7 @@ class CreateBooksGenresAuthors < ActiveRecord::Migration
       t.belongs_to :author, index: true
     end
 
-    add_index :books , :name
-    add_index :authors , :name
+    add_index :books, :name
+    add_index :authors, :name
   end
 end

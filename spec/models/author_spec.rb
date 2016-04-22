@@ -1,5 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe Book, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Author do
+
+  before do
+    @author= Author.new(name: "Other", description: "Lorem ipsum...")
+  end
+
+  subject { @author }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:description) }
+
+  it { should be_valid }
+
+  describe "when name is not present" do
+    before { @author.name = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when name is too long" do
+    before { @author.name = "a" * 51 }
+    it { should_not be_valid }
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422142218) do
+ActiveRecord::Schema.define(version: 20160422184844) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -31,19 +31,20 @@ ActiveRecord::Schema.define(version: 20160422142218) do
   add_index "authors_books", ["book_id"], name: "index_authors_books_on_book_id"
 
   create_table "books", force: :cascade do |t|
-    t.string   "name"
-    t.float    "price"
-    t.integer  "quantity"
-    t.integer  "sold"
+    t.string   "name",                      null: false
+    t.float    "price",       default: 0.0, null: false
+    t.integer  "quantity",    default: 0,   null: false
+    t.integer  "sold",        default: 0,   null: false
     t.integer  "year"
-    t.string   "isbn"
+    t.string   "isbn",                      null: false
     t.string   "description"
     t.integer  "genre_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"
+  add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true
   add_index "books", ["name"], name: "index_books_on_name"
 
   create_table "genres", force: :cascade do |t|
@@ -58,8 +59,14 @@ ActiveRecord::Schema.define(version: 20160422142218) do
     t.string   "name"
     t.string   "address"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "remember_token"
+    t.boolean  "admin",           default: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["login"], name: "index_users_on_login", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

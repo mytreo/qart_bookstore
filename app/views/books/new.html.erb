@@ -1,0 +1,38 @@
+<h1>Book#new</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@book) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity %>
+
+        <%= f.label :sold %>
+        <%= f.hidden_field :sold %>
+
+        <%= f.label :year %>
+        <%= f.text_field :year %>
+
+        <%= f.label :isbn %>
+        <%= f.text_field :isbn %>
+
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+
+        <%= f.label :genre %>
+        <%= f.select(:genre_id) do %>
+            <% @genres.each do |g| -%>
+                <%= content_tag(:option, g.name, value: g.id) %>
+            <% end %>
+        <% end %>
+
+        <%= f.submit "Add new Book", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

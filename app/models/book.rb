@@ -8,5 +8,4 @@ class Book < ActiveRecord::Base
   ISBN_REGEX = /\A(0|(97(8|9))){1}[-]{1}[0-9]{3}[-]{1}[0-9]{5}[-]{1}[0-9]{0,1}\z/i
   validates :isbn,presence: true, uniqueness: { case_sensitive: false }, format: {with: ISBN_REGEX}
 
-
 end

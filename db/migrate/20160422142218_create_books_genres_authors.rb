@@ -25,7 +25,7 @@ class CreateBooksGenresAuthors < ActiveRecord::Migration
     end
 
     create_table :authors_books, id: false do |t|
-      t.belongs_to :book, index: true
+      t.belongs_to :books, index: true
       t.belongs_to :author, index: true
     end
 

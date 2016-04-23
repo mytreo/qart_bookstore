@@ -1,2 +1,9 @@
 <h1>Book#index</h1>
-<p>Find me in app/views/book/index.html.erb</p>
+
+<%= will_paginate %>
+
+<ul class="books">
+  <%= render @books%>
+</ul>
+
+<%= will_paginate %>

@@ -24,9 +24,9 @@ class CreateBooksGenresAuthors < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :authors_books, id: false do |t|
-      t.belongs_to :books, index: true
-      t.belongs_to :author, index: true
+    create_join_table :authors,:books do |t|
+      t.index :author_id
+      t.index :book_id
     end
 
     add_index :books, :name

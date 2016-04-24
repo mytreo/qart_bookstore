@@ -1,0 +1,10 @@
+<% provide(:title, "Show Author") %>
+<h1>Author#show</h1>
+
+<%= link_to 'Edit', edit_author_path(@author) %> |
+
+
+<ul class="books">
+  <%= render @books%>
+</ul>
+<%= link_to 'Back', authors_path %>

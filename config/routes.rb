@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :line_items
-  resources :carts
- # get 'sessions/new'
-
   root  'genres#index'
   get 'search/search'
   get 'info_pages/about'
@@ -12,6 +8,8 @@ Rails.application.routes.draw do
   resources :authors
   resources :genres
   resources :users
+  resources :line_items, only: [:create, :destroy]
+  resources :carts, only: [:create,:show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup',  to: 'users#new',            via: 'get'

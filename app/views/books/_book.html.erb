@@ -11,7 +11,7 @@
     <% if signed_in? && current_user.admin? %>
           <%= link_to 'Edit', edit_book_path(book) %>
     <% else %>
-          <%= link_to 'Buy', '#'%>
+          <%= button_to 'Add to Cart', line_items_path(book_id: book), class:"btn btn-success"%>
     <% end %>
     </div>
 

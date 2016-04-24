@@ -40,12 +40,12 @@ textarea {
 
 }
 
-.glyphicon{
+.glyphicon {
   color: white;
   font-size: 1.7em;
 }
 
-.nav{
+.nav {
   padding: 5px;
 
 }
@@ -113,6 +113,7 @@ p {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .debug_dump {
   clear: both;
   float: left;
@@ -120,7 +121,6 @@ p {
   margin-top: 45px;
   @include box_sizing;
 }
-
 
 /* forms */
 
@@ -142,8 +142,13 @@ input {
     margin: 0 0 18px 0;
   }
 }
+
 .field_with_errors {
-   label{color:#a94442}
-   input{border-color:#a94442}
+  label {
+    color: #a94442
+  }
+  input {
+    border-color: #a94442
+  }
 }
 

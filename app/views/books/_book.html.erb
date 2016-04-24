@@ -1,26 +1,19 @@
 <li>
-<div class="container">
-  <div>
-  <p><%= link_to book.name, book %></p>
-  <p><%= book.authors.to_s%>  <%= '('+book.year.to_s+')'%>
-  </p>
-  </div>
+<div class="entry">
+  <%= image_tag(book.image_url) %>
+  <h3><%= link_to book.name, book %></h3>
+  <h2><%= authors_to_s(book.authors)%>  <%= '('+book.year.to_s+')'%></h2>
+      <%=  book.description %>
 
-  <div>
-    <div class="book_block book_image">
-    <image src= <%= image_url  book.image_url%>>
-    </div>
-    <div class="book_block">
-    <%=  book.description %>
-    <%=  book.price %>
+    <div class="price_line">
+     <span class="price">  <%=  number_to_currency(book.price , precision: 2,unit: '₴') %></span>
 
-    <% if 1 #check_is_admin? %>
-          <%= link_to 'Edit', '#' %>
+    <% if signed_in? && current_user.admin? %>
+          <%= link_to 'Edit', edit_book_path(book) %>
     <% else %>
           <%= link_to 'Buy', '#'%>
     <% end %>
     </div>
 
-  </div>
 </div>
 </li>

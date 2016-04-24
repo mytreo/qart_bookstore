@@ -1,3 +1,7 @@
-<h1>Book#show</h1>
+<h1>Book <%= @book.name %></h1>
 
-<%= @book.name %>, <%= @book.isbn %>
+<%= @book.isbn %>
+
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

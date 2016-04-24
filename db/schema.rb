@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160422184605) do
   add_index "authors", ["name"], name: "index_authors_on_name"
 
   create_table "authors_books", id: false, force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "author_id"
+    t.integer "author_id", null: false
+    t.integer "book_id",   null: false
   end
 
   add_index "authors_books", ["author_id"], name: "index_authors_books_on_author_id"

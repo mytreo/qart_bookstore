@@ -1,19 +1,55 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-      <%= link_to'#' do %>
-        <i class="glyphicon glyphicon-education"> <p id="logo">Qart BookStore </p></i>
-      <% end %>
+      <div class="navbar-header">
+        <%= link_to root_path, class: "navbar-brand" do %>
+            <i class="glyphicon glyphicon-education"></i>
+            <p id="logo">Qart BookStore </p>
+        <% end %>
+      </div>
+      <div class="collapse navbar-collapse">
+        <%= render 'layouts/search' %>
+
         <ul class="nav  nav-pills navbar-right">
-          <li><%= link_to '#' do %>
-                <p><i class="glyphicon glyphicon-log-in"></i> Sign in</p>
-            <% end %>
-          </li>
+          <% if signed_in? %>
+              <% if current_user.admin? %>
+                  <li>
+                    <%= link_to user_path(current_user) do %>
+                        <span class="glyphicon glyphicon-cog"></span>
+                        Admin Zone
+                    <% end %>
+                  </li>
+              <% else %>
+                  <li>
+                    <%= link_to user_path(current_user) do %>
+                        <span class="glyphicon glyphicon-user"></span>
+                        Personal Area
+                    <% end %>
+                  </li>
+              <% end %>
+              <li>
+                <%= link_to signout_path, method: "delete" do %>
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    Sign out
+                <% end %>
+              </li>
+          <% else %>
+              <li>
+                <%= link_to signin_path do %>
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    Sign in
+                <% end %>
+              </li>
+          <% end %>
           <li>
-            <%= link_to '#' do %>
-                <p><i class="glyphicon glyphicon-shopping-cart"></i> Cart</p>
+            <%= link_to '#', class: "" do %>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                Cart
             <% end %>
           </li>
         </ul>
-    </div>
-</header>
 
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>

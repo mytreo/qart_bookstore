@@ -1,13 +1,12 @@
 class BooksController < ApplicationController
-  before_action :get_genres, only: [:new, :edit, :create, :update]
-  before_action :check_is_admin?
+  before_action :get_genres_and_authors, only: [:new, :edit, :create, :update]
 
   def index
     @books = Book.paginate(page: params[:page])
   end
 
   def show
-    if @book= Book.find_by(params[:id])
+    if @book= Book.find_by_id(params[:id])
       render 'books/show'
     else
       render_404
@@ -32,7 +31,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find_by(params[:id])
+    @book = Book.find_by_id(params[:id])
     if @book.update_attributes(book_params)
       flash[:success] = "Book updated"
       redirect_to @book
@@ -42,7 +41,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    Book.find_by(params[:id]).destroy
+    Book.find_by_id(params[:id]).destroy
     flash[:success] = "Book deleted."
     redirect_to books_url
   end
@@ -57,11 +56,10 @@ class BooksController < ApplicationController
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
 
-    def get_genres
+    def get_genres_and_authors
       @genres ||= Genre.all
+      @authors ||= Author.all
     end
 
-    def check_is_admin?
-       # redirect_to (root_url) unless current_user.admin?
-    end
+
 end

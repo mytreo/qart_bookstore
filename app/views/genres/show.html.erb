@@ -1,0 +1,13 @@
+<% provide(:title, "Genre " +@genre.name + " list") %>
+<h1><%=@genre.name%></h1>
+<%= link_to 'Edit Genre Name', edit_genre_path(@genre) %>
+<br>
+<%= link_to 'price', genre_path(@genre,sort: :price)  %> |
+<%= link_to 'year', genre_path(@genre,sort: :year) %>|
+<%= link_to 'rating', genre_path(@genre,sort: :sold) %>
+
+<ul class="books">
+  <%= render @books%>
+</ul>
+
+<%= link_to 'Back', genres_path %>

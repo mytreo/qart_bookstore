@@ -1,4 +1,5 @@
 <% provide(:title, "Personal Area "+@user.login ) %>
 <h1><%= @user.login%></h1>
+<p>Admin rights = <%= @user.admin? %></p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

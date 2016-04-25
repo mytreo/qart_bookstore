@@ -1,10 +1,17 @@
 <% provide(:title, "Show Author") %>
-<h1>Author#show</h1>
+<h1>Author <%= @author.name%></h1>
 
-<%= link_to 'Edit', edit_author_path(@author) %> |
+<%= link_to 'Edit', edit_author_path(@author) %>
 
+<div class="row">
+  <%= @author.description %>
+</div>
 
+<%= render 'shared/genres_with_counters_list', genres:  @genres %>
+
+<div class="row">
 <ul class="books">
   <%= render @books%>
 </ul>
+</div>
 <%= link_to 'Back', authors_path %>

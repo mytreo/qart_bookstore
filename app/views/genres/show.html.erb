@@ -6,8 +6,9 @@
 <%= link_to 'year', genre_path(@genre,sort: :year) %>|
 <%= link_to 'rating', genre_path(@genre,sort: :sold) %>
 
+<div class="row">
 <ul class="books">
   <%= render @books%>
 </ul>
-
+</div>
 <%= link_to 'Back', genres_path %>

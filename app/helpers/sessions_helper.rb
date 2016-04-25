@@ -53,4 +53,12 @@ module SessionsHelper
     session[:cart_id]=cart.id
     cart
   end
+
+  def check_is_current_user_admin?
+    if current_user != nil && current_user.admin?
+      true
+    else
+      render_403
+    end
+  end
 end

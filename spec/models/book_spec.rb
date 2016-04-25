@@ -15,6 +15,8 @@ describe Book do
   it { should respond_to(:year) }
   it { should respond_to(:isbn) }
   it { should respond_to(:description) }
+  it { should respond_to(:authors) }
+  it { should respond_to(:genre) }
 
   it { should be_valid }
 

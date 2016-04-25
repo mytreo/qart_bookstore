@@ -2,9 +2,8 @@
 
 <h1>Your Cart</h1>
 <ul>
-  <% @cart.line_items.each do |item| %>
-  <li> <%= item.quantity %> X <%= item.book.name %> = <%= number_to_currency(item.total_price, precision: 2,unit: '₴') %></li>
-  <% end %>
+  <%= render(@cart.line_items) %>
+
 </ul>
 <p>Total =<%= number_to_currency(@cart.total_price, precision: 2,unit: '₴') %></p>
 <%= button_to 'Empty cart', @cart, method: :delete, confirm: 'Are you sure?' %>
@@ -12,3 +11,5 @@
 
 
 <%= link_to 'Back', carts_path %>
+
+

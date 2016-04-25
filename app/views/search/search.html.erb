@@ -1,8 +1,10 @@
 <% provide(:title, "Search Results") %>
-<h1>Search#search</h1>
+<h1>Search: "<%= @search_string%>"</h1>
 
-<p>Search: <%= @search_string%></p>
+<%= render 'shared/genres_with_counters_list', genres:  @genres %>
 
+<div class="row">
 <ul class="books">
   <%= render @books%>
 </ul>
+</div>

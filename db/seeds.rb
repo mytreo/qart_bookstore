@@ -166,6 +166,17 @@ books = Book.create([{name: 'Lorem ipsum Other',
                      image_url: 'book_covers/typical_book_cover.jpeg',
                      description:lorem_ipsum,
                      genre: genres.last}])
+9.times do |number|
+              Book.create([{name: 'Lorem ipsum Other'+number.to_s,
+              price: 9.99,
+              quantity: 10,
+              sold: 0,
+              year: 1994,
+              isbn: '978-596-0068'+number.to_s+'-5',
+              image_url: 'book_covers/typical_book_cover.jpeg',
+              description:lorem_ipsum,
+              genre: genres.first}]) end
+
 
 users = User.create([{email: 'admin@admin.ua',
                       admin: true,

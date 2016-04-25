@@ -1,6 +1,6 @@
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@book) do |f| %>
+    <%= form_for(@book, :html => {:class => "input_form"}) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.label :name %>
         <%= f.text_field :name %>

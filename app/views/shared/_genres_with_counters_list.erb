@@ -1,5 +1,5 @@
 <div class="row">
   <%   genres.each do |genre| %>
-     <p><%= link_to genre.name ,params.slice(:sort,:search_string,).merge({genre_ids: genre.id}) %>-<%= genre.s  %></p>
+     <p><%= link_to genre.name ,params.slice(:sort,:search_string).merge({genre_ids: genre.id}) %>-<%= genre.s  %></p>
   <% end %>
 </div>

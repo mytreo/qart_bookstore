@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424174059) do
+ActiveRecord::Schema.define(version: 20160425123923) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -31,17 +31,20 @@ ActiveRecord::Schema.define(version: 20160424174059) do
   add_index "authors_books", ["book_id"], name: "index_authors_books_on_book_id"
 
   create_table "books", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.float    "price",       default: 0.0, null: false
-    t.integer  "quantity",    default: 0,   null: false
-    t.integer  "sold",        default: 0,   null: false
+    t.string   "name",                             null: false
+    t.float    "price",              default: 0.0, null: false
+    t.integer  "quantity",           default: 0,   null: false
+    t.integer  "sold",               default: 0,   null: false
     t.integer  "year"
-    t.string   "isbn",                      null: false
-    t.string   "image_url"
+    t.string   "isbn",                             null: false
     t.text     "description"
     t.integer  "genre_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"

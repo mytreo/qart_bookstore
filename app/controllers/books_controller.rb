@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.paginate(page: params[:page], :per_page => 5)
+    @books = @books.includes(:authors).order(params[:sort])
   end
 
   def show
@@ -53,7 +54,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:name, :price, :quantity,:sold, :year,:isbn,:description,:genre_id)
+      params.require(:book).permit(:name, :price, :quantity,:sold, :year,:isbn,:description,:genre_id,:cover,:cover_file_name)
     end
 
     def get_genres_and_authors

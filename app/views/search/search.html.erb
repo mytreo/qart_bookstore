@@ -3,9 +3,6 @@
 
 <%= render 'shared/genres_with_counters_list', genres:  @genres %>
 
-<div class="row">
-  <%= will_paginate @books%>
-  <ul class="books">
-    <%= render @books%>
-  </ul>
-</div>
+<%= render 'shared/paginated_book_list', books:  @books%>
+
+<%= link_to 'Back Home', root_path %>

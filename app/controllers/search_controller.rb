@@ -8,6 +8,7 @@ class SearchController < ApplicationController
     if @genre_id
       @books = @books.where("genre_id in (?)", @genre_id.to_i)
     end
+    @books = @books.order(params[:sort])
     @books = @books.paginate(page: params[:page], :per_page => 5)
   end
 

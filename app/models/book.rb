@@ -5,6 +5,9 @@ class Book < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
+  has_attached_file :cover, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "missing.png"
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
+
   validates :name, presence: true
   validates :price, presence: true, numericality: {greater_than_or_equal_to: 0.00}
   validates :quantity, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.paginate(page: params[:page], :per_page => 5)
+    @books = Book.paginate(page: params[:page], :per_page => 10)
     @books = @books.includes(:authors).order(params[:sort])
   end
 

@@ -8,7 +8,7 @@ class AuthorsController < ApplicationController
 
   def show
     @books = Book.joins("join authors_books on books.id = authors_books.book_id").where(["authors_books.author_id = ?", @author.id]).order(params[:sort])
-    @books = @books.paginate(page: params[:page], :per_page => 5)
+    @books = @books.paginate(page: params[:page], :per_page => 10)
     @genres =Genre.select("genres.id, genres.name, sum(1) s").joins(books: :authors).where("authors.id = ?", @author.id).group(:id,:name)
   end
 

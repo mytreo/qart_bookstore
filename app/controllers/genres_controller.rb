@@ -8,7 +8,7 @@ class GenresController < ApplicationController
 
   def show
     @books=Book.where(genre: @genre.id).order(params[:sort])
-    @books = @books.paginate(page: params[:page], :per_page => 5)
+    @books = @books.paginate(page: params[:page], :per_page => 10)
   end
 
   def new

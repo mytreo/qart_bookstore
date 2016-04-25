@@ -9,7 +9,7 @@
         <small><%= authors_to_s(book.authors)%>  <%= '('+book.year.to_s+')'%></small>
       </div>
       <div class="thumbnail">
-        <%=  book.description %>
+        <p><%=  short_text(book.description) %></p>
       </div>
        <div class="input-group">
             <span class="input-group-addon"><%=  number_to_currency(book.price , precision: 2,unit: '₴') %></span>

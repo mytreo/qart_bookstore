@@ -1,27 +1,23 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_is_current_user_admin?, only:[:index]
+  before_action :check_is_current_user_admin?, only:[:index,:destroy]
+  before_action :correct_user,   only: [:show, :edit, :update]
+  before_action :signed_in_user, only: [:edit, :update]
 
   def index
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
   end
 
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
@@ -64,6 +60,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:login,:email,:password,:password_confirmation)
     end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
 end

@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
       flash[:success] = 'Order was successfully created. Thank you :-)'
       redirect_to root_url
     else
-      @cart = current_cart
       render :new
     end
   end

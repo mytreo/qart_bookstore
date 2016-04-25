@@ -8,7 +8,13 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-<%= render 'layouts/header' %>
+
+<%=  render 'layouts/header'%>
+
+<% if signed_in_admin? %>
+    <%= render 'layouts/admin_panel'   %>
+<% end  %>
+
 <div class="container">
 
   <% flash.each do |key, value| %>

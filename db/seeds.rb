@@ -102,6 +102,7 @@ lorem_ipsum='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 Genre.delete_all
 Author.delete_all
 Book.delete_all
+Cart.delete_all
 
 
 genres = Genre.create([{name: 'Разное'},{name: 'Художественная'},{name: 'Медицина и здоровье'},{name: 'Гуманитарные науки'},

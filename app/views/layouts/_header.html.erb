@@ -17,14 +17,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
-              <% if current_user.admin? %>
-                  <li>
-                    <%= link_to user_path(current_user) do %>
-                        <span class="glyphicon glyphicon-cog"></span>
-                        Admin Zone
-                    <% end %>
-                  </li>
-              <% else %>
+              <% if !current_user.admin? %>
                   <li>
                     <%= link_to user_path(current_user) do %>
                         <span class="glyphicon glyphicon-user"></span>
@@ -46,12 +39,14 @@
                 <% end %>
               </li>
           <% end %>
+          <% if !signed_in? || !current_user.admin? %>
           <li>
             <%= link_to cart_path(current_cart.id) do %>
                 <span class="glyphicon glyphicon-shopping-cart"></span>
                 Cart
             <% end %>
           </li>
+          <% end %>
         </ul>
 
       </div><!-- /.navbar-collapse -->

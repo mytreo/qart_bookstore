@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <div class="navbar-brand">
+      <span class="glyphicon glyphicon-cog"></span>Admin Panel
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav nav-pills">
+        <li>
+          <%= link_to books_path() do %>
+              <span class="glyphicon glyphicon-book"></span>
+              Books
+          <% end %>
+        </li>
+        <li>
+          <%= link_to authors_path() do %>
+              <span class="glyphicon glyphicon-user"></span>
+              Authors
+          <% end %>
+        </li>
+        <li>
+          <%= link_to genres_path() do %>
+              <span class="glyphicon glyphicon-folder-open"></span>
+              Genres
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+              <span class="glyphicon glyphicon-inbox"></span>
+              Orders
+          <% end %>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -4,7 +4,8 @@
 <%= render 'shared/genres_with_counters_list', genres:  @genres %>
 
 <div class="row">
-<ul class="books">
-  <%= render @books%>
-</ul>
+  <%= will_paginate @books%>
+  <ul class="books">
+    <%= render @books%>
+  </ul>
 </div>

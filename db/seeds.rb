@@ -103,6 +103,7 @@ Genre.delete_all
 Author.delete_all
 Book.delete_all
 Cart.delete_all
+Order.delete_all
 
 
 genres = Genre.create([{name: 'Разное'},{name: 'Художественная'},{name: 'Медицина и здоровье'},{name: 'Гуманитарные науки'},

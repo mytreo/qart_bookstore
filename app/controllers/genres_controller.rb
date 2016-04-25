@@ -49,7 +49,7 @@ class GenresController < ApplicationController
   end
 
   def genre_params
-    params.fetch(:genre, {})
+    params.require(:genre).permit(:name)
   end
 
 end

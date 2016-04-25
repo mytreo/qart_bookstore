@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.address %></td>
+        <td><%= order.email %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td>  <div class="btn-group" >
+          <%= link_to 'Send', order,method: :patch , class: "btn btn-success " %>
+          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"%>
+        </div> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

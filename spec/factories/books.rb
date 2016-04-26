@@ -4,7 +4,7 @@ FactoryGirl.define do
     price {rand(0..20.00)}
     quantity {rand(0..20)}
     sold {rand(0..20)}
-    sequence(:description)  { |n| "Lorem ipsum#{n}" }
+    description { Forgery(:lorem_ipsum).paragraphs(6) }
     year {rand(1950..2016)}
     sequence(:isbn,(11111..99999).cycle){|n| "978-596-#{n}-0"}
     association(:genre)

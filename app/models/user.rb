@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :orders
+
   validates :login, presence: true, length: {maximum: 15}
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: {with: EMAIL_REGEX},

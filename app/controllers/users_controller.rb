@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
+     if !@user.admin?
+       @orders = Order.where("user_id = ?",@user.id)
+     end
   end
 
   def new
@@ -20,30 +23,22 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      sign_in @user
+      flash[:success] = "Welcome to the QartBookStore"
+      redirect_to root_url
+    else
+      render 'new'
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        flash[:success] ='User info was successfully updated.'
+        redirect_to @user
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   def destroy
@@ -60,7 +55,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:login,:email,:password,:password_confirmation)
+      params.require(:user).permit(:login,:email,:name,:password,:password_confirmation)
     end
 
     def correct_user

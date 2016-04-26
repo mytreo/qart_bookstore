@@ -1,9 +1,24 @@
 <li>
-  <div>
-    <%=  order.name %>
-    <%=  order.address %>
-    <%=  order.email %>
-    <%=  order.line_items %>
+  <div class="row">
+    <section class="orders">
+    <div class = "col-md-4">
+    <%= order_info(order)%>
+    </div>
+    <div class = "col-md-8">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Title of Book</th>
+          <th>Total Price</th>
 
+        </tr>
+        </thead>
+        <tbody>
+    <%= render order.line_items %>
+        </tbody>
+        </table>
+    </div>
+    </section>
   </div>
 </li>

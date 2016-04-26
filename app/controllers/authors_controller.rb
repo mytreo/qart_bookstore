@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
-  before_action :check_is_current_user_admin?, only:[:new, :create, :edit, :update, :destroy]
+  before_action :check_is_current_user_admin?, only:[:index,:new, :create, :edit, :update, :destroy]
 
   def index
     @authors = Author.all

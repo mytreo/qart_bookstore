@@ -21,11 +21,13 @@ class OrdersController < ApplicationController
       @order.name = current_user.name
       @order.address = current_user.address
       @order.email = current_user.email
+      @order.user_id = current_user.id
     end
   end
 
   def create
     @order = Order.new(order_params)
+    @order.change_quantity(@cart.line_items)
     @order.add_line_items_from_cart(@cart)
     if @order.save
       Cart.destroy(session[:cart_id])
@@ -59,6 +61,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:name, :address, :email)
+    params.require(:order).permit(:name, :address, :email, :user_id)
   end
 end

@@ -1,4 +1,5 @@
-<li>
-  <%= line_item.quantity %> X <%= line_item.book.name %> = <%= number_to_currency(line_item.total_price, precision: 2,unit: '₴') %>
-  <%= button_to 'Delete', line_item, method: :delete %>
-</li>
+<tr>
+  <td><%= line_item.quantity %></td>
+  <td><span style="float:left"><%= line_item.book.name %></span><%= button_to 'X', line_item, method: :delete ,class:"btn  btn-xs btn-danger"%></td>
+  <td><%= number_to_currency(line_item.total_price, precision: 2,unit: '₴') %></td>
+</tr>

@@ -140,10 +140,10 @@ end
 
 line_items=[]
 20.times do |n|
-  line_items<<    FactoryGirl.create(:cart_line_item)
+  line_items<<    FactoryGirl.create(:cart_line_item,{book: books[rand(books.count)]})
 end
 20.times do |n|
-  line_items<<    FactoryGirl.create(:order_line_item)
+  line_items<<    FactoryGirl.create(:order_line_item,{book: books[rand(books.count)]})
 end
 
 users = User.create([{email: 'admin@admin.ua',

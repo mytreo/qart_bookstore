@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:login)  { |n| "Person #{n}" }
-    sequence(:name)  { |n| "Person #{n}" }
+    login {Forgery('internet').user_name }
+    name {Forgery('name').full_name }
     sequence(:address)  { |n| "Some street #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
     password "password"

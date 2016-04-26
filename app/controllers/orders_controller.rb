@@ -27,9 +27,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @books_and_quantities= @order.add_line_items_from_cart(@cart)
-    if @books_and_quantities && @order.save
-      @books_and_quantities.each do |item|
+    if @order.add_line_items_from_cart(@cart) && @order.save
+      @order.line_items.each  do |item|
         item.book.quantity-=item.quantity
         item.book.sold+=item.quantity
         item.book.save

@@ -6,7 +6,7 @@ FactoryGirl.define do
     sold {rand(0..20)}
     sequence(:description)  { |n| "Lorem ipsum#{n}" }
     year {rand(1950..2016)}
-    sequence(:isbn){|n| "978-596-0000#{n}-5"}
+    sequence(:isbn,(11111..99999).cycle){|n| "978-596-#{n}-0"}
     association(:genre)
   end
 end

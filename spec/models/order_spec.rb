@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Order do
 
   before do
-     book1=FactoryGirl.create(:book)
-     book2=FactoryGirl.create(:book)
+    book1=FactoryGirl.create(:book,{price:10})
+    book2=FactoryGirl.create(:book,{price:10})
     line_item1=LineItem.new(book_id: book1.id)
     line_item2=LineItem.new(book_id: book2.id)
     @order= Order.new(name:'name',address:'address',email:'er@er.rt')
@@ -19,8 +19,7 @@ describe Order do
   it { should respond_to(:email) }
   it { should respond_to(:line_items) }
 
-  describe "when total_price called" do
-    #before { @user.login = " " }
-   its(:total_price) { should eq(20)}
+  it "when total_price called" do
+    expect(subject.total_price).to eq(20)
   end
 end

@@ -138,6 +138,14 @@ books.each do |b|
   b.authors << a2
 end
 
+line_items=[]
+20.times do |n|
+  line_items<<    FactoryGirl.create(:cart_line_item)
+end
+20.times do |n|
+  line_items<<    FactoryGirl.create(:order_line_item)
+end
+
 users = User.create([{email: 'admin@admin.ua',
                       admin: true,
                       login:'admin',

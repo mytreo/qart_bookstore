@@ -1,14 +1,9 @@
 FactoryGirl.define do
-  factory :user do
-    login {Forgery('internet').user_name }
+  factory :order do
     name {Forgery('name').full_name }
     sequence(:address)  { |n| "Some street #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
-    password "password"
-    password_confirmation "password"
-
-    factory :admin do
-      admin true
-    end
+    association(:user)
+    status {rand(-1..1)}
   end
 end

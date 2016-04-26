@@ -2,7 +2,7 @@
 
 <h1>Listing Orders</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -11,23 +11,20 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.name %></td>
         <td><%= order.address %></td>
         <td><%= order.email %></td>
-        <td><%= link_to 'Show', order %></td>
         <td>  <div class="btn-group" >
-          <%= link_to 'Send', order,method: :patch , class: "btn btn-success " %>
-          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"%>
+          <%= link_to 'Show', order, class: "btn btn-primary "  %>
+          <%if order.status==0 %>
+            <%= link_to 'Send', order_path(order, status: 1),method: :patch , class: "btn btn-success " %>
+            <%= link_to 'Reject', order_path(order, status: -1),method: :patch, class: "btn btn-danger", data: {status:-1}%>
+          <%end%>
         </div> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>

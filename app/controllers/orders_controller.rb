@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :update]
-  before_action :signed_in_user, only: [:index]
+  before_action :check_is_current_user_admin?, only: [:index,:show]
 
   def index
     @orders = Order.all
@@ -40,15 +40,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+      if @order.update_attribute(:status,params[:status])
+        flash[:success] = "Order status was successfully updated."
       else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        flash[:success] = "Order status can't be updated."
       end
-    end
+      redirect_to orders_url
   end
 
   private
@@ -61,6 +58,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:name, :address, :email, :user_id)
+    params.require(:order).permit(:name, :address, :email, :user_id, :status)
   end
 end

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse navbar-fixed-top admin-panel">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-2" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-brand">
+      <span class="glyphicon glyphicon-cog"></span>Admin Panel
+    </div>
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
+
+      <ul class="nav navbar-nav nav-pills">
+        <li>
+          <%= link_to books_path() do %>
+              <span class="glyphicon glyphicon-book"></span>
+              Books
+          <% end %>
+        </li>
+        <li>
+          <%= link_to authors_path() do %>
+              <span class="glyphicon glyphicon glyphicon-pencil"></span>
+              Authors
+          <% end %>
+        </li>
+        <li>
+          <%= link_to genres_path() do %>
+              <span class="glyphicon glyphicon-folder-open"></span>
+              Genres
+          <% end %>
+        </li>
+        <li>
+          <%= link_to orders_path() do %>
+              <span class="glyphicon glyphicon-inbox"></span>
+              Orders
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_path() do %>
+              <span class="glyphicon glyphicon glyphicon-user"></span>
+              Users
+          <% end %>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

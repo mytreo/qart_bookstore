@@ -89,23 +89,25 @@ desc_auth << "Джош Кауфман— автор международного
               Его программа позволяет получить все необходимые для решения бизнес-задач знания самостоятельно,
               не тратя денег на дорогостоящее обучение в бизнес-школах."
 
-desc_auth << "Джереми Блум. Профессиональный инженер-электронщик, известный во всем мире благодаря серии популярных образовательных
-              видеоуроков по Arduino, размещенных на YouTube, а также оригинальным разработкам: системы отслеживания для «умных» солнечных батарей,
-              протеза руки, ходячих роботов, музыкального терменвокса, контроллеров жеста на перчатках, «машинного зрения» и многого другого."
+desc_auth << "Джереми Блум. Профессиональный инженер-электронщик, известный во всем мире благодаря серии популярных образовательных"+
+             "видеоуроков по Arduino, размещенных на YouTube, а также оригинальным разработкам: системы отслеживания для «умных» солнечных батарей,"+
+             " протеза руки, ходячих роботов, музыкального терменвокса, контроллеров жеста на перчатках, «машинного зрения» и многого другого."
 
-lorem_ipsum='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                   esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                                   in culpa qui officia deserunt mollit anim id est laborum.'
+lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut'+
+              'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris'+
+              'nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit'+
+              'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt'+
+              'in culpa qui officia deserunt mollit anim id est laborum.'
 
 Genre.delete_all
 Author.delete_all
 Book.delete_all
-
+Cart.delete_all
+Order.delete_all
+User.delete_all
 
 genres = Genre.create([{name: 'Разное'},{name: 'Художественная'},{name: 'Медицина и здоровье'},{name: 'Гуманитарные науки'},
-                       {name: 'Естественные науки'},{name: 'Юридическая'},{name: 'Психология'},{name: 'Хобби и увлечения'},
+                       {name: 'Естественные науки'},{name: 'Юридическая'},{name: 'Психология'},
                        {name: 'Хобби и увлечения'},{name: 'Техника и технологии'},{name: 'Радиоэлектроника'},
                        {name: 'Дизайн'},{name: 'Экономическая'},{name: 'Компьютерная литература'}])
 
@@ -120,63 +122,40 @@ authors = Author.create([{name: 'Эрик Берн', description: desc_auth[0]},
                          {name: 'Джош Кауфман', description: desc_auth[8]},
                          {name: 'Джереми Блум', description: desc_auth[9]}
                         ])
+books=[]
+ 99.times do |number|
+   isbn_part=rand(11111..12000)
+   books<< Book.create([{name: 'BookName '+number.to_s,
+              price: rand(2.50..29.99),
+              quantity: rand(0..20),
+              sold: rand(0..20),
+              year: rand(1950..2016),
+              isbn: '978-596-'+isbn_part.to_s+'-5',
+              description:lorem_ipsum,
+              genre: genres[rand(genres.count)]}]) end
 
-books = Book.create([{name: 'Lorem ipsum Other',
-                      price: 9.99,
-                      quantity: 10,
-                      sold: 0,
-                      year: 1994,
-                      isbn: '978-596-00681-5',
-                      image_url: 'book_covers/typical_book_cover.jpeg',
-                      description:lorem_ipsum,
-                      genre: genres.first},
-                     {name: 'Lorem ipsum Other2',
-                      price: 19.99,
-                      quantity: 12,
-                      sold: 7,
-                      year: 1994,
-                      isbn: '978-596-00681-2',
-                      image_url: 'book_covers/typical_book_cover.jpeg',
-                      description:lorem_ipsum,
-                      genre: genres.first},
-                      {name: 'Lorem ipsum Other3',
-                      price: 9.99,
-                      quantity: 0,
-                      sold: 9,
-                      year: 1965,
-                      isbn: '978-596-00681-7',
-                       image_url: 'book_covers/typical_book_cover.jpeg',
-                      description:lorem_ipsum,
-                      genre: genres.first},
-                     {name: 'Lorem ipsum Comp1',
-                      price: 9.99,
-                      quantity: 2,
-                      sold: 9,
-                      year: 1979,
-                      isbn: '978-596-00681-8',
-                      image_url: 'book_covers/typical_book_cover.jpeg',
-                      description:lorem_ipsum,
-                      genre: genres.last},
-                    {name: 'Lorem ipsum Comp2',
-                     price: 19.99,
-                     quantity: 3,
-                     sold: 9,
-                     year: 1969,
-                     isbn: '978-596-00681-9',
-                     image_url: 'book_covers/typical_book_cover.jpeg',
-                     description:lorem_ipsum,
-                     genre: genres.last}])
+books=Book.all
+books.each do |b|
+  a1=authors[rand(authors.count)]
+  a2=authors[rand(authors.count)]
+  b.authors << a1
+  b.authors << a2
+end
 
 users = User.create([{email: 'admin@admin.ua',
                       admin: true,
                       login:'admin',
                       password:'password',
                       password_confirmation:'password'},
-                     {email: 'user1@admin.ua',
+                     {email: 'user1@us.ua',
                       login:'user1',
+                      name:'Name Surname',
+                      address:'Some Address1 street',
                       password:'password',
                       password_confirmation:'password'},
-                      {email: 'user2@admin.ua',
-                          login:'user',
+                      {email: 'user2@us.ua',
+                          login:'user2',
+                       name:'Name Surname2',
+                       address:'Some Address2 street',
                        password:'password',
                        password_confirmation:'password'}])

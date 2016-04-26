@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @order.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<p>
+  <strong>Items:</strong>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Quantity</th>
+    <th>Title of Book</th>
+    <th>Total Price</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <%= render @order.line_items %>
+  </tbody>
+</table>
+</p>
+
+<%= link_to 'Back', orders_path ,class:"btn btn-primary"%>

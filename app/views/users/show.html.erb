@@ -1,4 +1,27 @@
 <% provide(:title, "Personal Area "+@user.login ) %>
 <h1><%= @user.login%></h1>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+<p><%if @user.admin? %></p>
+      <h3>HELLO ADMIN!</h3>
+     <%else%>
+  <div class="panel panel-default">
+    <div class="panel-heading">Users's info</div>
+    <div class="panel-body">
+      <p><b>Name:</b> <%= @user.name%></p>
+      <p><b>Email:</b> <%= @user.email%></p>
+      <p><b>Address</b> <%= @user.address%></p>
+      <%= link_to 'Edit', edit_user_path(@user),class: "btn btn-success" %>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Users's orders</div>
+    <div class="panel-body">
+      <ul class="orders">
+      <%= render @user.orders%>
+      </ul>
+    </div>
+  </div>
+
+      <%end%>
+  <%= link_to 'Back to Home', root_path ,class: "btn btn-primary" %>
+</div>

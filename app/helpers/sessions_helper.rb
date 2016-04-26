@@ -10,6 +10,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def signed_in_admin?
+    !current_user.nil? && current_user.admin?
+  end
+
   def current_user=(user)
     @current_user = user
   end
@@ -26,7 +30,8 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_url, notice: "Please sign in."
+      flash[:success] = "Please sign in."
+      redirect_to signin_url
     end
   end
 
@@ -46,4 +51,19 @@ module SessionsHelper
     session[:return_to] = request.url if request.get?
   end
 
+  def current_cart
+    Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    cart=Cart.create
+    session[:cart_id]=cart.id
+    cart
+  end
+
+  def check_is_current_user_admin?
+    if current_user != nil && current_user.admin?
+      true
+    else
+      render_403
+    end
+  end
 end

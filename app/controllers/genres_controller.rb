@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_current_user_admin?, only:[:new, :create, :edit, :update, :destroy]
 
   def index
     @genres = Genre.all
@@ -7,6 +8,7 @@ class GenresController < ApplicationController
 
   def show
     @books=Book.where(genre: @genre.id).order(params[:sort])
+    @books = @books.paginate(page: params[:page], :per_page => 10)
   end
 
   def new
@@ -47,7 +49,7 @@ class GenresController < ApplicationController
   end
 
   def genre_params
-    params.fetch(:genre, {})
+    params.require(:genre).permit(:name)
   end
 
 end

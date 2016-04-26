@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 90px;
 }
 
 section {
@@ -38,6 +38,20 @@ textarea {
 
 }
 
+.navbar-brand .glyphicon{
+  font-size: 1.3em;
+}
+.navbar-form .glyphicon{
+  font-size: 1.7em;
+}
+
+.glyphicon{
+  color:white;
+}
+
+ .admin-panel{
+  top: 40pt;
+}
 /* footer */
 
 footer {
@@ -90,6 +104,9 @@ h2 {
   color: #999;
 }
 
+h3 {
+  text-align: center;
+}
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -112,7 +129,7 @@ p {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+.input_form input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -139,4 +156,5 @@ input {
     border-color: #a94442
   }
 }
+
 

@@ -1,4 +1,6 @@
-<%= render 'form' %>
+<% provide(:title, "Editing Book") %>
+<h1>Editing Book</h1>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+<%=  render 'form' %>
+
+<%= link_to 'Back to list', books_path, class:"btn btn-success"  %>

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your Cart</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Title of Book</th>
+      <th>Total Price</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  <%= render(@cart.line_items) %>
+  <td></td>
+  <td><%= button_to 'Empty cart(Remove all items)', @cart, method: :delete, confirm: 'Are you sure?' ,class:"btn btn-danger"%></td>
+  <td><b>Total = </b><%= number_to_currency(@cart.total_price, precision: 2,unit: '₴') %></td>
+  </tbody>
+</table>
+
+<%= link_to 'Back to buying', root_path ,class:"btn btn-primary"%>
+<%= link_to 'Create Order', new_order_path,class:"btn btn-success" %>

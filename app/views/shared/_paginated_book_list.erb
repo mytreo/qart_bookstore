@@ -1,0 +1,15 @@
+<div class="row">
+  <% if books.count>0 %>
+  <%= link_to 'price',params.slice(:sort,:search_string).merge({sort: :price})  %> |
+  <%= link_to 'year',params.slice(:sort,:search_string).merge({sort: :year})  %>|
+  <%= link_to 'rating',params.slice(:sort,:search_string).merge({sort: :sold})  %>
+  <br>
+  <%end%>
+  <%= will_paginate books%>
+  <ul class="books">
+    <%= render books%>
+  </ul>
+  <%= will_paginate books%>
+</div>
+
+

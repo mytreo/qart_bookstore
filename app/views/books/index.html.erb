@@ -1,9 +1,8 @@
-<h1>Book#index</h1>
+<h1>All Books</h1>
+<% if signed_in_admin?%>
+    <%= link_to 'New Book', new_book_path ,class: "btn btn-primary"%>
+    <br>
+<% end %>
 
-<%= will_paginate %>
+<%= render 'shared/paginated_book_list', books:  @books%>
 
-<ul class="books">
-  <%= render @books%>
-</ul>
-
-<%= will_paginate %>

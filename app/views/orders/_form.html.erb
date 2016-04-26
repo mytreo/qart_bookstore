@@ -1,0 +1,17 @@
+<%= form_for(@order, :html => {:class => "input_form"}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+
+    <%= f.hidden_field :user_id %>
+
+    <%= f.submit "Ok" ,class:"btn btn-success"%>
+
+<% end %>

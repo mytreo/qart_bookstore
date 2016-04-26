@@ -1,10 +1,16 @@
 <% provide(:title, "Show Author") %>
-<h1>Author#show</h1>
+<h1>Author <%= @author.name%></h1>
 
-<%= link_to 'Edit', edit_author_path(@author) %> |
+<div class="row">
+  <%= @author.description %>
+</div>
 
+<%= render 'shared/genres_with_counters_list', genres:  @genres %>
 
-<ul class="books">
-  <%= render @books%>
-</ul>
-<%= link_to 'Back', authors_path %>
+<%= render 'shared/paginated_book_list', books:  @books%>
+
+<% if signed_in_admin? %>
+<%= link_to 'Back to list', authors_path %> |
+<%end%>
+
+<%= link_to 'Back Home', root_path %>

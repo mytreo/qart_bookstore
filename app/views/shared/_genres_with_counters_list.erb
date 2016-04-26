@@ -1,0 +1,8 @@
+<div class="row">
+  <h4>Books in categories</h4>
+  <ul class="list-group row">
+  <%   genres.each do |genre| %>
+    <li class="list-group-item col-xs-4"><%= link_to genre.name ,params.slice(:sort,:search_string).merge({genre_ids: genre.id}) %>-<%= genre.s  %></li>
+  <% end %>
+  </ul>
+</div>

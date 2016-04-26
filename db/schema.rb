@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422184605) do
+ActiveRecord::Schema.define(version: 20160426094034) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -31,28 +31,58 @@ ActiveRecord::Schema.define(version: 20160422184605) do
   add_index "authors_books", ["book_id"], name: "index_authors_books_on_book_id"
 
   create_table "books", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.float    "price",       default: 0.0, null: false
-    t.integer  "quantity",    default: 0,   null: false
-    t.integer  "sold",        default: 0,   null: false
+    t.string   "name",                             null: false
+    t.float    "price",              default: 0.0, null: false
+    t.integer  "quantity",           default: 0,   null: false
+    t.integer  "sold",               default: 0,   null: false
     t.integer  "year"
-    t.string   "isbn",                      null: false
-    t.string   "image_url"
+    t.string   "isbn",                             null: false
     t.text     "description"
     t.integer  "genre_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"
   add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true
   add_index "books", ["name"], name: "index_books_on_name"
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "quantity",   default: 1
+    t.integer  "order_id"
+    t.float    "price",      default: 0.0, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "status",     default: 0, null: false
+    t.integer  "user_id"
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "login"

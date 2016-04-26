@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
 
- # get 'sessions/new'
-
   root  'genres#index'
   get 'search/search'
-  get 'info_pages/about'
 
   resources :books
   resources :authors
   resources :genres
   resources :users
+  resources :orders, only: [:index,:show,:new, :create, :update]
+  resources :line_items, only: [:create, :destroy]
+  resources :carts, only: [:show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup',  to: 'users#new',            via: 'get'

@@ -28,7 +28,9 @@
   </tr>
   </thead>
   <tbody>
-  <%= render @order.line_items %>
+  <% @order.line_items.each do |line_item| %>
+      <%= render 'line_items/line_item_without_button', line_item:  line_item%>
+  <%end%>
   </tbody>
 </table>
 </p>

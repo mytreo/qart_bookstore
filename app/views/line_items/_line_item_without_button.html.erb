@@ -1,0 +1,7 @@
+<tr>
+  <td><%= line_item.quantity %></td>
+  <td>
+    <span style="float:left"><%= line_item.book.name %></span>
+     </td>
+  <td><%= number_to_currency(line_item.total_price, precision: 2,unit: '₴') %></td>
+</tr>

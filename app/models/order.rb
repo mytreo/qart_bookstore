@@ -7,17 +7,15 @@ class Order < ActiveRecord::Base
       cart.line_items.each do |item|
       item.cart_id = nil
       line_items << item
-    end
+      if item.quantity > item.book.quantity
+        return false
+      end
+      end
+    true
   end
 
   def total_price
     line_items.to_a.sum{|item| item.total_price}
-  end
-
-  def change_quantity(items)
-    items.each do |item|
-      item.book.quantity+=9999
-    end
   end
 
 end

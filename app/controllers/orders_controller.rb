@@ -27,14 +27,18 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.change_quantity(@cart.line_items)
-    @order.add_line_items_from_cart(@cart)
-    if @order.save
+    if @order.add_line_items_from_cart(@cart) && @order.save
+      @order.line_items.each  do |item|
+        item.book.quantity-=item.quantity
+        item.book.sold+=item.quantity
+        item.book.save
+      end
       Cart.destroy(session[:cart_id])
       session[:cart_id]=nil
       flash[:success] = 'Order was successfully created. Thank you :-)'
       redirect_to root_url
     else
+      flash.now[:warning] = "Can't create such order"
       render :new
     end
   end
@@ -42,6 +46,13 @@ class OrdersController < ApplicationController
   def update
       if @order.update_attribute(:status,params[:status])
         flash[:success] = "Order status was successfully updated."
+        if params[:status].to_i < 0
+          @order.line_items.each do |item|
+            item.book.quantity+=item.quantity
+            item.book.sold-=item.quantity
+            item.book.save
+          end
+        end
       else
         flash[:success] = "Order status can't be updated."
       end

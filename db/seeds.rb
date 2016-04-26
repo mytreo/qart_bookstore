@@ -122,6 +122,14 @@ authors = Author.create([{name: 'Эрик Берн', description: desc_auth[0]},
                          {name: 'Джош Кауфман', description: desc_auth[8]},
                          {name: 'Джереми Блум', description: desc_auth[9]}
                         ])
+Book.create([{name: 'BookName11111',
+              price: rand(2.50..29.99),
+              quantity: rand(0..20),
+              sold: 0,
+              year: rand(1950..2016),
+              isbn: '978-596-00000-5',
+              description:lorem_ipsum,
+              genre: genres.first }])
 books=[]
  99.times do |number|
    isbn_part=rand(11111..12000)

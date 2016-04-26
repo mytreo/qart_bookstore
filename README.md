@@ -2,6 +2,14 @@
 ---
 **Example Store**
 
+
+https://dry-earth-97213.herokuapp.com/
+
+ admin : password
+ user1 : password
+
+
+
 РЕАЛИЗОВАНО
 
 * Main page На главной странице должны быть:  

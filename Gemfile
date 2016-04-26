@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.4'
 gem 'rails', '4.2.6'
 
 gem 'bcrypt-ruby', '3.1.5'
@@ -24,6 +24,10 @@ end
 group :test do
   gem 'selenium-webdriver', '2.53.0'
   gem 'capybara', '2.7.0'
+end
+
+#for rake db:seed
+group :production, :test do
   gem 'factory_girl_rails', '4.7.0'
   gem 'forgery', '~> 0.6.0'
 end

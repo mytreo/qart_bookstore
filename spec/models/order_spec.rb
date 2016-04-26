@@ -19,8 +19,8 @@ describe Order do
   it { should respond_to(:email) }
   it { should respond_to(:line_items) }
 
- # describe "when total_price called" do
+  describe "when total_price called" do
     #before { @user.login = " " }
- #   its(:total_price) { should eq(20)}
- # end
+   its(:total_price) { should eq(20)}
+  end
 end

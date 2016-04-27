@@ -1,10 +1,24 @@
 require 'rails_helper'
 
-RSpec.describe "GenrePages", type: :request do
-  describe "GET /genre_pages" do
-    it "works! (now write some real specs)" do
-      get genre_pages_index_path
+RSpec.describe "Genres pages", type: :request do
+  before{
+    @genre = FactoryGirl.create(:genre)
+  }
+
+  describe "index & show actions" do
+
+    it "visit genre path" do
+      get genres_path
       expect(response).to have_http_status(200)
+      expect(response).to render_template(:index)
     end
+
+    it "visit concrete genre path valid" do
+      get genre_path @genre
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:show)
+    end
+
   end
+
 end

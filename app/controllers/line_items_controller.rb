@@ -3,7 +3,7 @@ class LineItemsController < ApplicationController
 
   def create
     @cart=current_cart
-    book=Book.find_by_id(params[:book_id])
+    book=Book.find(params[:book_id])
     @line_item = @cart.add_book(book.id)
       if @line_item.save
         redirect_to @line_item.cart

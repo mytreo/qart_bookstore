@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
 
   private
   def set_order
-    @order = Order.find_by_id(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def set_cart
